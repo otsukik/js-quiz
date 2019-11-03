@@ -1,0 +1,17 @@
+#category-area {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+#question-area {
+  padding: 10px 0 10px 0;
+  border: 1px solid #aaa;
+  border-left: 0;
+  border-right: 0;
+  margin-bottom: 10px;
+}
+
+#answer-list li {
+  list-style: none;
+}
