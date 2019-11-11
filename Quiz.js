@@ -41,15 +41,15 @@ class Quiz {
     this._score++;
   }
 
-  get index() {
+  getIndex() {
     return this._index;
   }
 
-  get score() {
+  getScore() {
     return this._score;
   }
 
-  get quizzesLength() {
+  getQuizzesLength() {
     return this._quizzes.length;
   }
 

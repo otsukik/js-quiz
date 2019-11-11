@@ -20,13 +20,14 @@ const startQuiz = async quizInstance => {
 }
 
 const displayQuiz = quizInstance => {
-  quizIndex.textContent = `問題${quizInstance.index + 1}`;
-  category.textContent = `[ジャンル]${quizInstance.getCategory(quizInstance.index)}`;
-  difficulty.textContent = `[難易度]${quizInstance.getDifficulty(quizInstance.index)}`;
-  question.textContent = unescapedHTML(quizInstance.getQuestion(quizInstance.index));
+  const currentIndex = quizInstance.getIndex();
+  quizIndex.textContent = `問題${currentIndex + 1}`;
+  category.textContent = `[ジャンル]${quizInstance.getCategory(currentIndex)}`;
+  difficulty.textContent = `[難易度]${quizInstance.getDifficulty(currentIndex)}`;
+  question.textContent = unescapedHTML(quizInstance.getQuestion(currentIndex));
 
   // シャッフルした解答一覧を代入
-  const shuffledAnswers = quizInstance.shuffleCurrentAnswers(quizInstance.index);
+  const shuffledAnswers = quizInstance.shuffleCurrentAnswers(currentIndex);
 
   // 解答一覧を作成表示
   shuffledAnswers.forEach(answer => {
@@ -38,10 +39,9 @@ const displayQuiz = quizInstance => {
     
     // 解答を押した時の処理
     btn.addEventListener('click', () => {
-      if (btn.textContent === quizInstance.getAnswer(quizInstance.index)) {
+      if (btn.textContent === quizInstance.getAnswer(currentIndex)) {
         quizInstance.addScore();
       }
-      
       quizInstance.addIndex();
       setNextQuiz(quiz);
     });
@@ -54,11 +54,14 @@ const setNextQuiz = quizInstance => {
   difficulty.textContent = '';
   question.textContent = '';
 
+  // 解答一覧を削除
   while (answerList.firstChild) {
     answerList.removeChild(answerList.firstChild);
   }
 
-  if (quizInstance.index < quizInstance.quizzesLength) {
+  // 次のクイズ画面表示とスコア画面表示を条件分岐
+  const currentIndex = quizInstance.getIndex();
+  if (currentIndex < quizInstance.getQuizzesLength()) {
     displayQuiz(quizInstance);
   } else {
     finishQuiz(quiz);
@@ -66,7 +69,7 @@ const setNextQuiz = quizInstance => {
 }
 
 const finishQuiz = quizInstance => {
-  quizIndex.textContent = `あなたの正答数は${quizInstance.score}です！！`
+  quizIndex.textContent = `あなたの正答数は${quizInstance.getScore()}です！！`
   question.textContent = '再度チャレンジしたい場合は以下をクリック！！'
 
   const li = document.createElement('li');
