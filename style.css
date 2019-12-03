@@ -1,0 +1,32 @@
+body {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+button {
+  /* buttonのheightが21px以下だと見た目が変わるため22pxを指定 */
+  height: 22px;
+  cursor: pointer;
+}
+
+#category-area {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+#question {
+  padding: 10px 0 10px 0;
+  border: 1px solid #aaa;
+  border-left: 0;
+  border-right: 0;
+  margin-bottom: 10px;
+}
+
+#answer-list {
+  list-style: none;
+  padding: 0;
+}
+
+#answer-list > li {
+  margin-bottom: 5px;
+}
