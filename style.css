@@ -1,21 +1,41 @@
+@charset "UTF-8";
+
 body {
-  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-family: Verdana, sans-serif;
 }
 
+/* buttonのheightが21px以下だと見た目が変わる（全角半角で高さが変わる） */
+/* buttonのブラウザ標準スタイルをリセットして最初から作り直す */
 button {
-  /* buttonのheightが21px以下だと見た目が変わるため22pxを指定 */
-  height: 22px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.container button {
+  height: 30px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0 10px;
   cursor: pointer;
 }
 
-#category-area {
-  font-size: 1.2rem;
+.container button:hover {
+  background: #f2f2f2;
+}
+
+.category-area {
+  font-size: 1.2em;
   font-weight: bold;
   margin-bottom: 20px;
 }
 
 #question {
-  padding: 10px 0 10px 0;
+  padding: 10px 0;
   border: 1px solid #aaa;
   border-left: 0;
   border-right: 0;
@@ -28,5 +48,5 @@ button {
 }
 
 #answer-list > li {
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
